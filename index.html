@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Yuva Abhipraya Nawasena</title>
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <style>
+        /* Mengimpor font menggunakan @import untuk stabilitas yang lebih baik */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+        /* Custom styles for fonts and animations */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* New background image with responsive properties */
+            /* background-image: url('img/undangan_bg2.jpeg'); */
+            background-image: url('img/undangan_bg2.jpeg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+
+        .font-serif-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Simple fade-in animation for elements */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Carousel styles */
+        .carousel-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            /* Add a fade effect to the edges */
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .carousel-track {
+            display: flex;
+            /* 11 original images + 11 duplicates * 250px width each */
+            width: calc(250px * 22);
+            animation: scroll 60s linear infinite;
+        }
+
+        .carousel-item {
+            width: 250px;
+            height: 200px;
+            object-fit: cover;
+            padding: 0 8px;
+            flex-shrink: 0;
+            border-radius: 0.5rem;
+            /* 8px */
+        }
+
+        /* Pause animation on hover */
+        .carousel-container:hover .carousel-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                /* Scroll by the width of the original 11 images */
+                transform: translateX(calc(-250px * 11));
+            }
+        }
+
+        /* Welcome Overlay Styles */
+        #welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 0.5s ease-out;
+        }
+
+        /* Style to properly hide the YouTube player */
+        #player {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Welcome Overlay -->
+    <div id="welcome-overlay">
+        <div class="text-center text-white p-8 max-w-sm">
+            <h2 class="font-serif-display text-3xl sm:text-4xl mb-4">Undangan Penghargaan</h2>
+            <p class="mb-8 text-slate-200">Anda diundang untuk hadir dalam acara penghargaan Yuva Abhipraya Nawasena.
+            </p>
+            <button id="open-invitation"
+                class="bg-sky-600 text-white font-bold py-3 px-8 rounded-full hover:bg-sky-700 transition-colors">
+                Buka Undangan
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <!-- Padding diatur responsif: p-4 untuk mobile, sm:p-8 untuk layar lebih besar -->
+    <div class="container mx-auto max-w-3xl p-4 sm:p-8">
+
+        <!-- Header Section -->
+        <header class="text-center my-8 fade-in-section">
+            <!-- Ukuran font responsif: text-3xl (default), sm:text-4xl, md:text-5xl -->
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h1 class="font-serif-display text-3xl sm:text-4xl md:text-5xl font-bold text-sky-800 ">Penghargaan</h1>
+            <h2 class="text-2xl sm:text-3xl font-semibold text-slate-600 mt-2">Yuva Abhipraya Nawasena</h2>
+            <p class="mt-4 text-slate-500 italic">"Orang muda yang pantang menyerah dan bercita-cita tinggi."</p>
+        </header>
+
+        <!-- Countdown Timer Section -->
+        <section id="countdown-section" class="my-12 fade-in-section">
+            <h3 class="text-center text-xl font-semibold text-sky-700 mb-4">Menuju hari yang ditunggu-tunggu.</h3>
+            <!-- Jarak antar item (gap) responsif: gap-2 (default), sm:gap-4 -->
+            <div id="countdown-timer" class="grid grid-cols-4 gap-2 sm:gap-4 text-center">
+                <div class="bg-white/80 backdrop-blur-sm p-3 sm:p-4 rounded-lg shadow-md">
+                    <!-- Ukuran font responsif -->
+                    <div id="days" class="text-3xl sm:text-4xl font-bold text-sky-800">0</div>
+                    <div class="text-xs sm:text-sm text-slate-500">Hari</div>
+                </div>
+                <div class="bg-white/80 backdrop-blur-sm p-3 sm:p-4 rounded-lg shadow-md">
+                    <div id="hours" class="text-3xl sm:text-4xl font-bold text-sky-800">0</div>
+                    <div class="text-xs sm:text-sm text-slate-500">Jam</div>
+                </div>
+                <div class="bg-white/80 backdrop-blur-sm p-3 sm:p-4 rounded-lg shadow-md">
+                    <div id="minutes" class="text-3xl sm:text-4xl font-bold text-sky-800">0</div>
+                    <div class="text-xs sm:text-sm text-slate-500">Menit</div>
+                </div>
+                <div class="bg-white/80 backdrop-blur-sm p-3 sm:p-4 rounded-lg shadow-md">
+                    <div id="seconds" class="text-3xl sm:text-4xl font-bold text-sky-800">0</div>
+                    <div class="text-xs sm:text-sm text-slate-500">Detik</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Invitation Message -->
+        <section class="text-center my-12 bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-lg shadow-md fade-in-section">
+            <h3 class="font-serif-display text-2xl font-bold text-sky-800 mb-3">Dengan Hormat,</h3>
+            <p class="text-slate-600 leading-relaxed">
+                Dalam rangka memberikan apresiasi kepada siswa berprestasi yang menunjukkan semangat pantang menyerah
+                serta memiliki cita-cita tinggi, kami mengundang Bapak/Ibu/Saudara untuk berkenan hadir dalam acara
+                Anugerah Yuva Abhipraya Nawasena.
+                Anugerah Yuva Abhipraya Nawasena merupakan bentuk penghargaan bagi generasi muda yang terus berjuang,
+                berkembang, dan berani bermimpi besar, meskipun menghadapi berbagai tantangan.
+            </p>
+        </section>
+
+        <!-- Event Details Section -->
+        <section class="my-12 fade-in-section">
+            <h3 class="text-center text-xl font-semibold text-sky-700 mb-6">Detail Acara</h3>
+            <div class="bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-lg shadow-md space-y-6">
+                <!-- Date -->
+                <div class="flex items-start space-x-4">
+                    <div
+                        class="flex-shrink-0 h-10 w-10 bg-sky-100 text-sky-700 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700">Tanggal & Waktu</h4>
+                        <p class="text-slate-600">Senin, 22 Desember 2025</p>
+                        <p class="text-slate-500 text-sm">17.00 WIB s.d. Selesai</p>
+                    </div>
+                </div>
+                <!-- Location -->
+                <div class="flex items-start space-x-4">
+                    <div
+                        class="flex-shrink-0 h-10 w-10 bg-sky-100 text-sky-700 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700">Tempat</h4>
+                        <p class="text-slate-600">Aula SMK Pariwisata Metland School - lt.5</p>
+                        <p class="text-slate-500 text-sm">Jl. Metland Transyogi Cileungsi Bogor</p>
+                        <a href="https://maps.app.goo.gl/gGYUQSXw3FnM21SdA?g_st=ipc" target="_blank"
+                            class="mt-2 inline-block bg-sky-600 text-white text-xs font-semibold py-1 px-3 rounded-full hover:bg-sky-700 transition-colors">
+                            Lihat Peta
+                        </a>
+                    </div>
+                </div>
+                <!-- Contribution & Participants -->
+                <!-- <div class="flex items-start space-x-4">
+                    <div class="flex-shrink-0 h-10 w-10 bg-sky-100 text-sky-700 rounded-full flex items-center justify-center">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-slate-700">Kontribusi & Peserta</h4>
+                        <p class="text-slate-600">Biaya kontribusi Rp100.000 per orang.</p>
+                        <p class="text-slate-500 text-sm">Pesertanya adalah Anda bersama istri dan anak.</p>
+                        <p class="text-slate-600 mt-2 pt-2 border-t border-slate-200">Transfer ke: <br><span class="font-bold">BCA 0281589899</span><br>a.n. Susan Adrian, SH.</p>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+
+        <!-- Activities Section -->
+        <section class="my-12 fade-in-section">
+            <h3 class="text-center text-xl font-semibold text-sky-700 mb-6">Rangkaian Acara</h3>
+            <!-- Tata letak responsif: 1 kolom (default), md:3 kolom untuk layar medium ke atas -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-slate-600">
+                <div
+                    class="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-md flex items-center justify-center text-center space-x-3">
+                    <span>🙏</span>
+                    <p>Perayaan Ekaristi</p>
+                </div>
+                <div
+                    class="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-md flex items-center justify-center text-center space-x-3">
+                    <span>💬</span>
+                    <p>Ramah Tamah</p>
+                </div>
+                <div
+                    class="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-md flex items-center justify-center text-center space-x-3">
+                    <span>🍽️</span>
+                    <p>Makan Bersama</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="my-12 fade-in-section">
+            <h3 class="text-center text-xl font-semibold text-sky-700 mb-6">Galeri Kenangan</h3>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <!-- Original Images -->
+                    <img src="img/IMG-20250820-WA0064.jpg" alt="Foto Kenangan 1" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0065.jpg" alt="Foto Kenangan 2" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0066.jpg" alt="Foto Kenangan 3" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0067.jpg" alt="Foto Kenangan 4" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0068.jpg" alt="Foto Kenangan 5" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0069.jpg" alt="Foto Kenangan 6" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0070.jpg" alt="Foto Kenangan 7" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0071.jpg" alt="Foto Kenangan 8" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0072.jpg" alt="Foto Kenangan 9" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0073.jpg" alt="Foto Kenangan 10" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0074.jpg" alt="Foto Kenangan 11" class="carousel-item">
+                    <!-- Duplicated Images for seamless loop -->
+                    <img src="img/IMG-20250820-WA0064.jpg" alt="Foto Kenangan 1" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0065.jpg" alt="Foto Kenangan 2" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0066.jpg" alt="Foto Kenangan 3" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0067.jpg" alt="Foto Kenangan 4" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0068.jpg" alt="Foto Kenangan 5" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0069.jpg" alt="Foto Kenangan 6" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0070.jpg" alt="Foto Kenangan 7" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0071.jpg" alt="Foto Kenangan 8" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0072.jpg" alt="Foto Kenangan 9" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0073.jpg" alt="Foto Kenangan 10" class="carousel-item">
+                    <img src="img/IMG-20250820-WA0074.jpg" alt="Foto Kenangan 11" class="carousel-item">
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP / Contact Section -->
+        <section id="rsvp-section"
+            class="my-12 text-center bg-sky-800/80 backdrop-blur-sm text-white p-6 sm:p-8 rounded-lg shadow-lg fade-in-section">
+            <div id="rsvp-form-container">
+                <h3 class="font-serif-display text-2xl font-bold mb-4">Formulir Konfirmasi Kehadiran</h3>
+                <p class="mb-6 opacity-90">Mohon isi formulir di bawah ini.</p>
+                <!-- Form diubah untuk mengirim data ke skrip PHP -->
+                <form id="rsvp-form" class="max-w-md mx-auto text-left">
+                    <div class="mb-4">
+                        <label for="name" class="block mb-2 text-sm font-bold">Nama Lengkap</label>
+                        <input type="text" id="name" name="name"
+                            class="w-full px-3 py-2 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                            required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="nomor_wa" class="block mb-2 text-sm font-bold">Nomor WA</label>
+                        <input type="tel" id="nomor_wa" name="nomor_wa"
+                            class="w-full px-3 py-2 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                            placeholder="Contoh: 081234567890" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="attendees" class="block mb-2 text-sm font-bold">Jumlah Kehadiran (termasuk Anda &
+                            keluarga)</label>
+                        <input type="number" id="attendees" name="attendees"
+                            class="w-full px-3 py-2 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                            min="1" required>
+                    </div>
+                    <div class="mb-6">
+                        <span class="block mb-2 text-sm font-bold">Status Kehadiran</span>
+                        <div class="flex items-center space-x-6 mt-2">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="status" value="Hadir"
+                                    class="mr-2 h-4 w-4 text-sky-500 focus:ring-sky-500" checked> Hadir
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="status" value="Tidak Hadir"
+                                    class="mr-2 h-4 w-4 text-sky-500 focus:ring-sky-500"> Tidak Hadir
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-white text-sky-800 font-bold py-3 px-6 rounded-full hover:bg-sky-100 transition-colors duration-300 shadow">Kirim
+                        Konfirmasi</button>
+                </form>
+            </div>
+            <div id="thank-you-message" class="hidden">
+                <h3 class="font-serif-display text-2xl font-bold mb-4">Terima Kasih!</h3>
+                <p>Konfirmasi Anda telah kami terima. Sampai jumpa di acara!</p>
+            </div>
+            <div id="error-message" class="hidden">
+                <h3 class="font-serif-display text-2xl font-bold mb-4 text-red-300">Oops!</h3>
+                <p>Terjadi kesalahan saat mengirim konfirmasi. Silakan coba lagi.</p>
+            </div>
+        </section>
+
+        <!-- Closing Message Section -->
+        <section class="text-center my-12 fade-in-section">
+            <p
+                class="text-slate-600 italic leading-relaxed max-w-xl mx-auto bg-white/50 backdrop-blur-sm p-4 rounded-lg">
+                "Kehadiran Bapak/Ibu/Saudara akan menjadi kehormatan dan dukungan berarti bagi para siswa yang menerima
+                anugerah ini.
+
+                Atas perhatian dan kehadirannya, kami ucapkan terima kasih."
+            </p>
+            <!-- <p class="font-semibold text-sky-800 mt-6 text-lg">
+                Syalom
+            </p> -->
+            <p class="font-semibold text-sky-800 mt-6 text-lg">
+                Masa depan dibangun oleh mereka yang tidak berhenti melangkah.
+            </p>
+        </section>
+
+        <!-- Footer -->
+        <footer
+            class="text-center mt-12 mb-6 text-slate-700 text-sm fade-in-section bg-white/50 backdrop-blur-sm p-4 rounded-lg">
+            <!-- <p>Tuhan memberkati. 🙏</p> -->
+            <p class="mt-1">&copy; 2025 SMK Pariwisata Metland School</p>
+        </footer>
+
+    </div>
+
+    <!-- Hidden YouTube Player -->
+    <div id="player"></div>
+
+    <!-- Music Control Button -->
+    <button id="music-toggle"
+        class="fixed bottom-5 right-5 z-50 h-12 w-12 bg-sky-800 text-white rounded-full shadow-lg flex items-center justify-center focus:outline-none">
+        <!-- Mute Icon -->
+        <svg id="icon-mute" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                clip-rule="evenodd" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+        </svg>
+        <!-- Unmute Icon -->
+        <svg id="icon-unmute" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+        </svg>
+    </button>
+
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        // --- YOUTUBE BACKGROUND MUSIC ---
+        var player;
+        window.onYouTubeIframeAPIReady = function () {
+            player = new YT.Player('player', {
+                height: '360',
+                width: '640',
+                videoId: 'DBzIlu7XYYA',
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'loop': 1,
+                    'playlist': 'DBzIlu7XYYA',
+                    'showinfo': 0,
+                    'modestbranding': 1
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // The player is ready but might not autoplay with sound.
+            // We initially mute it and let the user unmute via interaction.
+            event.target.mute();
+            event.target.playVideo();
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // --- WELCOME OVERLAY & MUSIC START ---
+            const openButton = document.getElementById('open-invitation');
+            const overlay = document.getElementById('welcome-overlay');
+            const musicToggleButton = document.getElementById('music-toggle');
+            const muteIcon = document.getElementById('icon-mute');
+            const unmuteIcon = document.getElementById('icon-unmute');
+
+            openButton.addEventListener('click', function () {
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 500); // Match transition duration
+
+                // Unmute the player after user interaction
+                if (player && typeof player.unMute === 'function') {
+                    player.unMute();
+                }
+            });
+
+            // --- COUNTDOWN TIMER ---
+            const countDownDate = new Date("Dec 22, 2025 17:00:00").getTime();
+            const interval = setInterval(function () {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = days;
+                document.getElementById("hours").innerText = hours;
+                document.getElementById("minutes").innerText = minutes;
+                document.getElementById("seconds").innerText = seconds;
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    document.getElementById("countdown-section").innerHTML = '<h3 class="text-center text-2xl font-bold text-sky-700">Acaranya Telah Tiba!</h3>';
+                }
+            }, 1000);
+
+            // --- SCROLL ANIMATION ---
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // --- MUSIC TOGGLE BUTTON ---
+            musicToggleButton.addEventListener('click', function () {
+                if (player && typeof player.isMuted === 'function') {
+                    if (player.isMuted()) {
+                        player.unMute();
+                        muteIcon.classList.add('hidden');
+                        unmuteIcon.classList.remove('hidden');
+                    } else {
+                        player.mute();
+                        muteIcon.classList.remove('hidden');
+                        unmuteIcon.classList.add('hidden');
+                    }
+                }
+            });
+
+            // --- RSVP FORM HANDLING ---
+            const rsvpForm = document.getElementById('rsvp-form');
+            const rsvpFormContainer = document.getElementById('rsvp-form-container');
+            const thankYouMessage = document.getElementById('thank-you-message');
+            const errorMessage = document.getElementById('error-message');
+
+            rsvpForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const formData = new FormData(rsvpForm);
+                
+                console.log(formData);
+                fetch('submit_rsvp.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            rsvpFormContainer.classList.add('hidden');
+                            thankYouMessage.classList.remove('hidden');
+                            errorMessage.classList.add('hidden');
+                        } else {
+                            rsvpFormContainer.classList.add('hidden');
+                            errorMessage.classList.remove('hidden');
+                            console.error('Error:', data.message);
+                        }
+                    })
+                    .catch(error => {
+                        rsvpFormContainer.classList.add('hidden');
+                        errorMessage.classList.remove('hidden');
+                        console.error('Fetch Error:', error);
+                    });
+            });
+        });
+    </script>
+</body>
+
+</html>
