@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 25, 2025 at 02:35 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost:3306
+-- Generation Time: Dec 17, 2025 at 11:34 AM
+-- Server version: 8.1.0
+-- PHP Version: 8.2.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `kmk_unpad_reuni`
+-- Database: `yuva_metland`
 --
 
 -- --------------------------------------------------------
@@ -28,21 +28,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `rsvp` (
-  `id` int(11) NOT NULL,
-  `nama_lengkap` varchar(255) NOT NULL,
-  `jurusan` varchar(255) NOT NULL,
-  `nomor_wa` varchar(20) NOT NULL,
-  `status_kehadiran` varchar(20) NOT NULL,
-  `waktu_konfirmasi` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` int NOT NULL,
+  `nama_lengkap` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `jumlah_kehadiran` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nomor_wa` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `status_kehadiran` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `waktu_konfirmasi` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `rsvp`
---
-
-INSERT INTO `rsvp` (`id`, `nama_lengkap`, `jurusan`, `nomor_wa`, `status_kehadiran`, `waktu_konfirmasi`) VALUES
-(1, 'Budi Santoso', '', '081234567890', 'Hadir', '2025-08-20 12:47:47'),
-(2, 'Budi Santoso', 'Teknik Informatika', '081234567890', 'Hadir', '2025-08-25 12:33:36');
 
 --
 -- Indexes for dumped tables
@@ -62,7 +54,7 @@ ALTER TABLE `rsvp`
 -- AUTO_INCREMENT for table `rsvp`
 --
 ALTER TABLE `rsvp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
