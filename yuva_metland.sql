@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 17, 2025 at 11:34 AM
+-- Generation Time: Dec 19, 2025 at 03:41 AM
 -- Server version: 8.1.0
 -- PHP Version: 8.2.16
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `rsvp` (
   `id` int NOT NULL,
   `nama_lengkap` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `siswa` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `jumlah_kehadiran` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `nomor_wa` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   `status_kehadiran` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
@@ -54,7 +55,7 @@ ALTER TABLE `rsvp`
 -- AUTO_INCREMENT for table `rsvp`
 --
 ALTER TABLE `rsvp`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

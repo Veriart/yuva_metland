@@ -22,17 +22,18 @@ if ($conn->connect_error) {
 // --- MENGAMBIL DATA DARI FORMULIR ---
 // Mengambil data yang dikirim melalui metode POST dari HTML
 $nama_lengkap = $_POST['name'];
+$siswa = $_POST['student'];
 $nomor_wa = $_POST['nomor_wa'];
-$jumlah_kehadiran = $_POST['attendees'];
+// $jumlah_kehadiran = $_POST['attendees'];
 $status_kehadiran = $_POST['status'];
 
 // --- MENYIAPKAN DAN MENJALANKAN QUERY SQL ---
 // Menyiapkan perintah SQL dengan prepared statement untuk keamanan (mencegah SQL Injection)
-$stmt = $conn->prepare("INSERT INTO rsvp (nama_lengkap, nomor_wa, jumlah_kehadiran, status_kehadiran) VALUES (?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO rsvp (nama_lengkap, siswa, nomor_wa, status_kehadiran) VALUES (?, ?, ?, ?)");
 
 // Mengikat variabel PHP ke placeholder (?) dalam perintah SQL
 // "ssis" berarti: string, string, integer, string
-$stmt->bind_param("ssis", $nama_lengkap, $nomor_wa, $jumlah_kehadiran, $status_kehadiran);
+$stmt->bind_param("ssis", $nama_lengkap, $siswa, $nomor_wa, $status_kehadiran);
 
 // Menjalankan perintah
 if ($stmt->execute()) {

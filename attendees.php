@@ -132,10 +132,10 @@
                         <div class="flex items-center gap-2 text-xs">
                             <label for="sort-select" class="text-white/90">Urutkan:</label>
                             <select id="sort-select" class="px-2 py-1 rounded text-slate-800">
-                                <option value="nama_asc">Nama A-Z</option>
-                                <option value="nama_desc">Nama Z-A</option>
-                                <option value="jumlah_desc">Jumlah ↓</option>
-                                <option value="jumlah_asc">Jumlah ↑</option>
+                                <option value="nama_asc">Nama Ibu A-Z</option>
+                                <option value="nama_desc">Nama Ibu Z-A</option>
+                                <option value="siswa_desc">Nama Siswa ↓</option>
+                                <option value="siswa_asc">Nama Siswa ↑</option>
                                 <option value="status_asc">Status A-Z</option>
                                 <option value="status_desc">Status Z-A</option>
                             </select>
@@ -146,8 +146,8 @@
                         <thead>
                             <tr class="border-b border-white/30">
                                 <th class="py-2 px-3">#</th>
-                                <th class="py-2 px-3 cursor-pointer" data-sort="nama">Nama ▼</th>
-                                <th class="py-2 px-3 text-center cursor-pointer" data-sort="jumlah">Jumlah ▼</th>
+                                <th class="py-2 px-3 cursor-pointer" data-sort="nama">Nama Ibu ▼</th>
+                                <th class="py-2 px-3 cursor-pointer" data-sort="siswa">Siswa ▼</th>
                                 <th class="py-2 px-3">Whatsapp</th>
                                 <th class="py-2 px-3 text-center cursor-pointer" data-sort="status">Status ▼</th>
                             </tr>
@@ -160,7 +160,7 @@
                             <tr class="border-b border-white/30" data-nama="<?= strtolower($row['nama_lengkap']) ?>" data-jumlah="<?= $row['jumlah_kehadiran'] ?>" data-status="<?= strtolower($row['status_kehadiran']) ?>">
                                 <td class="py-2 px-3"><?php echo $no++; ?></td>
                                 <td class="py-2 px-3"><?php echo $row['nama_lengkap']; ?></td>
-                                <td class="py-2 px-3 text-center"><?php echo $row['jumlah_kehadiran']; ?></td>
+                                <td class="py-2 px-3"><?php echo $row['siswa']; ?></td>
                                 <td class="py-2 px-3"><?php echo $row['nomor_wa']; ?></td>
                                 <td class="py-2 px-3 text-center"><?php echo $row['status_kehadiran']; ?></td>
                             </tr>
@@ -200,9 +200,9 @@
                                     valA = a.dataset.nama;
                                     valB = b.dataset.nama;
                                     break;
-                                case 'jumlah':
-                                    valA = parseInt(a.dataset.jumlah, 10);
-                                    valB = parseInt(b.dataset.jumlah, 10);
+                                case 'siswa':
+                                    valA = parseInt(a.dataset.siswa, 10);
+                                    valB = parseInt(b.dataset.siswa, 10);
                                     break;
                                 case 'status':
                                     valA = a.dataset.status;
